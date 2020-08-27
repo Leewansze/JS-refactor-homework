@@ -2,9 +2,11 @@ const rankTest = require('ava');
 const { voyageRisk } = require('../src/rank')
 const { captainHistoryRisk } = require('../src/rank')
 const { voyageProfitFactor } = require('../src/rank')
-    // rankTest('foo', t => {
-    //   t.pass();
-    // });
+const { rating } = require("../src/rank");
+const rank = require('../src/rank');
+// rankTest('foo', t => {
+//   t.pass();
+// });
 
 // rankTest('bar', async t => {
 //   const bar = Promise.resolve('bar');
@@ -362,8 +364,62 @@ rankTest('should return 3 when voyageProfitFactor given voyage zone is west-indi
             profit: 7,
         }
     ];
-
     const result = voyageProfitFactor(voyage, history)
-
     t.is(result, 3);
+})
+
+rankTest('should return A when rating', t => {
+    const voyage = {
+        zone: 'china',
+        length: 13,
+    };
+    const history = [{
+            zone: 'east-indies',
+            profit: 5,
+        },
+        {
+            zone: 'west-indies',
+            profit: 15,
+        },
+        {
+            zone: 'east-indies',
+            profit: 2,
+        },
+        {
+            zone: 'west-africa',
+            profit: 7,
+        },
+        {
+            zone: 'west-indies',
+            profit: 15,
+        },
+        {
+            zone: 'china',
+            profit: 7,
+        },
+        {
+            zone: 'west-indies',
+            profit: 15,
+        },
+        {
+            zone: 'west-africa',
+            profit: 7,
+        },
+        {
+            zone: 'west-africa',
+            profit: 7,
+        },
+        {
+            zone: 'west-africa',
+            profit: 7,
+        },
+        {
+            zone: 'west-africa',
+            profit: 7,
+        }
+    ];
+    //when
+    const result = rating(voyageHasChina, history)
+        //then
+    t.is(result, "A")
 })
