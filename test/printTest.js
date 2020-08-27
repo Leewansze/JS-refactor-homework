@@ -1,7 +1,7 @@
 const printTest = require('ava');
 const { printOwing } = require("../src/print")
 
-printTest('should return when printOwing given ', t => {
+printTest('should return txt when printOwing given invoice', t => {
     //given
     const invoice = {
         borderSpacing: [
@@ -13,7 +13,9 @@ printTest('should return when printOwing given ', t => {
     let today = new Date();
     let future = new Date();
     future.setDate(today.getDate() + 30);
+    //when
     const result = printOwing(invoice);
+    //then
     t.is(result, `***********************\n` +
         `**** Customer Owes ****\n` +
         `***********************\n` +
