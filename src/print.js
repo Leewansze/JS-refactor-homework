@@ -1,15 +1,8 @@
 function printOwing(invoice) {
     let outstanding = calculateOutstanding(invoice);
-    // console.log('***********************');
-    // console.log('**** Customer Owes ****');
-    // console.log('***********************');
     recordDueDate(invoice);
-
     // print details
     let result = getTxtResult(invoice, outstanding);
-    // console.log(`name: ${invoice.customer}`);
-    // console.log(`amount: ${outstanding}`);
-    // console.log(`amount: ${invoice.dueDate.toLocaleDateString()}`);
     return result
 }
 
