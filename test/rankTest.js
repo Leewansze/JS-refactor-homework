@@ -35,6 +35,20 @@ const historyLengtOverFive = [{
     profit: 7,
 }, ];
 
+const historyLengthLessFive = [{
+    zone: 'east-indies',
+    profit: 5,
+}, {
+    zone: 'west-indies',
+    profit: 15,
+}, {
+    zone: 'china',
+    profit: -2,
+}, {
+    zone: 'west-africa',
+    profit: 7,
+}, ];
+
 rankTest('should return 7 when voyageRisk given voyage length > 8', t => {
     //given
     const voyage = {
@@ -103,21 +117,8 @@ rankTest('should return 9 when voyageRisk given voyage zone is china and voyage 
 })
 
 rankTest('should return 4 when captainHistoryRisk given voyage zone is china and history length < 5', t => {
-    const history = [{
-        zone: 'east-indies',
-        profit: 5,
-    }, {
-        zone: 'west-indies',
-        profit: 15,
-    }, {
-        zone: 'china',
-        profit: -2,
-    }, {
-        zone: 'west-africa',
-        profit: 7,
-    }, ];
     //when
-    const result = captainHistoryRisk(voyageHasChina, history)
+    const result = captainHistoryRisk(voyageHasChina, historyLengthLessFive)
         //then
     t.is(result, 4)
 })
@@ -139,4 +140,16 @@ rankTest('should return 4 when captainHistoryRisk given voyage zone not china an
     const result = captainHistoryRisk(voyage, historyLengtOverFive)
         //then
     t.is(result, 4)
+})
+
+rankTest('should return 6 when captainHistoryRisk given voyage zone not china and history length < 5', t => {
+    //given
+    const voyage = {
+        zone: 'east-indies',
+        length:  10,
+    };
+    //when
+    const result = captainHistoryRisk(voyage, historyLengthLessFive)
+        //then
+    t.is(result, 6)
 })
