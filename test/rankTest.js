@@ -423,3 +423,35 @@ rankTest('should return A when rating', t => {
         //then
     t.is(result, "A")
 })
+
+rankTest('should return B when rating', t => {
+    const voyage = {
+        zone: 'west-indies',
+        length: 15,
+    };
+    const history = [{
+            zone: 'east-indies',
+            profit: 5,
+        },
+        {
+            zone: 'west-indies',
+            profit: 15,
+        },
+        {
+            zone: 'east-indies',
+            profit: 2,
+        },
+        {
+            zone: 'west-africa',
+            profit: 7,
+        },
+        {
+            zone: 'west-indies',
+            profit: 15,
+        }
+    ];
+    //when
+    const result = rating(voyageHasChina, history)
+        //then
+    t.is(result, "B")
+})
