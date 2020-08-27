@@ -57,7 +57,7 @@ rankTest('should return 5 when voyageRisk given voyage zone is china and voyage 
     t.is(result, 5)
 })
 
-rankTest('should return when voyageRisk given voyage zone is china and voyage length > 4 but <8', t => {
+rankTest('should return 7 when voyageRisk given voyage zone is china and voyage length > 4 but <8', t => {
     //given
     const voyage = {
             zone: 'china',
@@ -67,4 +67,16 @@ rankTest('should return when voyageRisk given voyage zone is china and voyage le
     const result = voyageRisk(voyage);
     //then
     t.is(result, 7)
+})
+
+rankTest('should return 9 when voyageRisk given voyage zone is china and voyage length > 8', t => {
+    //given
+    const voyage = {
+        zone: 'china',
+        length:  10,
+    };
+    //when
+    const result = voyageRisk(voyage)
+        //then
+    t.is(result, 9)
 })
