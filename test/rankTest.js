@@ -106,3 +106,34 @@ rankTest('should return 4 when captainHistoryRisk given voyage zone is china and
         //then
     t.is(result, 4)
 })
+
+rankTest('should return 2 when captainHistoryRisk given voyage zone is china and history length > 5', t => {
+    //given
+    const voyage = {
+        zone: 'china',
+        length:  10,
+    };
+    const history = [{
+        zone: 'east-indies',
+        profit: 5,
+    }, {
+        zone: 'west-indies',
+        profit: 15,
+    }, {
+        zone: 'china',
+        profit: -2,
+    }, {
+        zone: 'china',
+        profit: -2,
+    }, {
+        zone: 'china',
+        profit: -2,
+    }, {
+        zone: 'west-africa',
+        profit: 7,
+    }, ];
+    //when
+    const result = captainHistoryRisk(voyage, history)
+        //then
+    t.is(result, 2)
+})
