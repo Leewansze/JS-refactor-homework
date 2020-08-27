@@ -3,13 +3,7 @@ function printOwing(invoice) {
     // console.log('***********************');
     // console.log('**** Customer Owes ****');
     // console.log('***********************');
-
-
-
-
-    // record due date
-    const today = new Date();
-    invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
+    recordDueDate(invoice);
 
     // print details
     let result = getTxtResult(invoice, outstanding);
@@ -21,6 +15,11 @@ function printOwing(invoice) {
 
 module.exports = {
     printOwing
+}
+
+function recordDueDate(invoice) {
+    const today = new Date();
+    invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
 }
 
 function calculateOutstanding(invoice) {
