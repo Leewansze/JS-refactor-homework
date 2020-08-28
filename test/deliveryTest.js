@@ -78,3 +78,25 @@ deliveryTest('should return date for delay 4 days when deliveryDate given delive
   //then
   t.is(result, deliveryDay.toLocaleDateString())
 })
+
+deliveryTest('should return date for delay 5 days when deliveryDate given deliveryState has ME and isrush is false', t => {
+  //given
+  const isRush = false;
+  let delayDay = 5;
+  const anOrder = {
+    deliveryState: 'ME',
+    placedOn: {
+      plusDays(delivery) {
+        let realDelivery = new Date();
+        realDelivery.setDate(realDelivery.getDate() + delivery)
+        return realDelivery.toLocaleDateString();
+      }
+    }
+  }
+  let deliveryDay = new Date();
+  deliveryDay.setDate(deliveryDay.getDate() + delayDay)
+  //when
+  const result = deliveryDate(anOrder, isRush)
+  //then
+  t.is(result, deliveryDay.toLocaleDateString())
+})
