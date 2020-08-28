@@ -19,3 +19,6 @@ class Employee {
         return `${this._name} (${this._type})`;
     }
 }
+module.exports = {
+    Employee
+}
