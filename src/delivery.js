@@ -1,14 +1,15 @@
+function isDeliveryState(deliveryState, anOrder) {
+  return deliveryState.includes(anOrder.deliveryState);
+}
+
 function deliveryWithTrueRush(anOrder) {
   let deliveryTime;
-  if ([
-    'MA',
-    'CT',
-  ].includes(anOrder.deliveryState)) {
+  const deliveryState_MACT = [ 'MA', 'CT', ];
+  const deliveryState_NYNH = [ 'NY', 'NH', ];
+
+  if (isDeliveryState(deliveryState_MACT, anOrder)){
     deliveryTime = 1;
-  } else if ([
-    'NY',
-    'NH',
-  ].includes(anOrder.deliveryState)) {
+  } else if (isDeliveryState(deliveryState_NYNH, anOrder)) {
     deliveryTime = 2;
   } else {
     deliveryTime = 3;
@@ -18,15 +19,12 @@ function deliveryWithTrueRush(anOrder) {
 
 function deliveryWithFalseRush(anOrder) {
   let deliveryTime;
-  if ([
-    'CT',
-    'NY',
-  ].includes(anOrder.deliveryState)) {
+  const deliveryState_CTNY = [ 'CT', 'NY', ];
+  const deliveryState_MENH = [ 'ME', 'NH', ];
+
+  if (isDeliveryState(deliveryState_CTNY, anOrder)) {
     deliveryTime = 2;
-  } else if ([
-    'ME',
-    'NH',
-  ].includes(anOrder.deliveryState)) {
+  } else if (isDeliveryState(deliveryState_MENH, anOrder)) {
     deliveryTime = 3;
   } else {
     deliveryTime = 4;
@@ -35,9 +33,9 @@ function deliveryWithFalseRush(anOrder) {
 }
 
 function deliveryDate(anOrder, isRush) {
-    return isRush ? deliveryWithTrueRush(anOrder): deliveryWithFalseRush(anOrder);
+  return isRush ? deliveryWithTrueRush(anOrder) : deliveryWithFalseRush(anOrder);
 }
 
 module.exports = {
-    deliveryDate
+  deliveryDate
 };
