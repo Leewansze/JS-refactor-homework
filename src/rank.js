@@ -31,25 +31,35 @@ function captainHistoryRisk(voyage, history) {
     return Math.max(result, 0);
 }
 
-function voyageProfitFactor(voyage, history) {
-    let result = 2;
+function judgeVoyageZone(voyage, result) {
     if (voyage.zone === 'china') {
         result += 1;
     }
     if (voyage.zone === 'east-indies') {
         result += 1;
     }
+    return result;
+}
+
+function calculateVoyageProfitFactor(history, result, voyage) {
+    if (history.length > 10) {
+        result += 1;
+    }
+    if (voyage.length > 12) {
+        result += 1;
+    }
+    if (voyage.length > 18) {
+        result -= 1;
+    }
+    return result;
+}
+
+function voyageProfitFactor(voyage, history) {
+    let result = 2;
+    result = judgeVoyageZone(voyage, result);
     if (voyage.zone === 'china' && hasChina(history)) {
         result += 3;
-        if (history.length > 10) {
-            result += 1;
-        }
-        if (voyage.length > 12) {
-            result += 1;
-        }
-        if (voyage.length > 18) {
-            result -= 1;
-        }
+        result = calculateVoyageProfitFactor(history, result, voyage);
     } else {
         if (history.length > 8) {
             result += 1;
