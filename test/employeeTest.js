@@ -14,3 +14,14 @@ employeeTest('should return not throw exception when new a employee given alice 
     const employee = new Employee('Alice', 'engineer')
     t.notThrows(() => employee)
 })
+
+employeeTest('should return throw exception when new a employee given alice and error type', t => {
+    try{
+        //given
+        const employee = new Employee('Alice', 'programmer')
+    }catch (e) {
+        console.log(e.error)
+        //then
+        t.throws(() => employee)
+    }
+})
