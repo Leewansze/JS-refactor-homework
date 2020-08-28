@@ -13,8 +13,12 @@ class Employee {
 
     validateType(type) {
         if (!positionType.includes(type)) {
-            throw new Error(`Employee cannot be of type ${type}`);
+            this.throwException(type);
         }
+    }
+
+    throwException(type) {
+        throw new Error(`Employee cannot be of type ${type}`);
     }
 
     toString() {
